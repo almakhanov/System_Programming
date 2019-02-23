@@ -1,4 +1,3 @@
-
 obj-m += c.o
 
 all:
