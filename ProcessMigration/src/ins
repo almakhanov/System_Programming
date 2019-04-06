@@ -1,0 +1,51 @@
+#!/usr/bin/perl
+
+# this applet is to load the clock device driver and create
+# the corresponding /dev/clock file.
+
+use strict;
+
+my $device = "ckpt";
+my $devfile = "/dev/ckpt";
+my $listfile = "/proc/devices";
+my $major = -1;
+
+system "/sbin/insmod ckpt.ko";
+
+# get the major number from /dev/clock
+open LIST, $listfile or die "can't open $listfile!\n";
+
+my $line;
+
+while ($line = <LIST>) {
+    chomp $line;
+    my $dev = substr($line, 4);
+    if ($dev eq $device) {           # is it "ckpt"?
+	$major = substr($line, 0, 3);
+	$major =~ s/ //g;
+	last;
+    }
+}
+
+close LIST;
+
+# not found?
+die "loading failed..please check your code\n" if ($major == -1);
+
+if (-e $devfile) {
+    print STDERR "$devfile exists\n";        # dev file already exists
+}
+else {
+#    print "mknod $devfile c $major 0\n";
+    system "mknod $devfile c $major 0";
+    system "chmod 666 $devfile";
+    print "ckpt loaded\n";
+}
+
+
+
+
+
+
+
+

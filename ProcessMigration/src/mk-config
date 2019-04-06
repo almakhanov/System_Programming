@@ -1,0 +1,18 @@
+#!/bin/bash
+
+UNAME=`uname -r`
+
+if [ ! -f "/boot/System.map-$UNAME" ]; then
+    echo "/boot/System.map-$UNAME doesn't exist" 1>&2
+    echo "mk-config failed" 1>&2
+    exit 1
+fi
+
+OFFSET=`grep "\b$1\b" "/boot/System.map-$UNAME" | cut -d' ' -f1`
+OFFSET=`grep "\b$1\b" "/boot/System.map-$UNAME" | head -n 1 | cut -d' ' -f1`
+
+if [ "$OFFSET" = '' ]; then
+    OFFSET="00000000"
+fi
+
+echo "#define $2 0x$OFFSET"

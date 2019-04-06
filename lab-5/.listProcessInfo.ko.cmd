@@ -1,0 +1,1 @@
+cmd_/home/almakhanov/Documents/SP/lab-5/listProcessInfo.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/almakhanov/Documents/SP/lab-5/listProcessInfo.ko /home/almakhanov/Documents/SP/lab-5/listProcessInfo.o /home/almakhanov/Documents/SP/lab-5/listProcessInfo.mod.o

@@ -1,0 +1,5 @@
+To build:
+$> make
+
+WARNING: Will not compile perfectly. Refer to Doxy-docs for more 
+details.

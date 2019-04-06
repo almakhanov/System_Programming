@@ -2,8 +2,12 @@
 #include <string.h>
 #include <sched.h>
 #include <errno.h>
+#include <unistd.h>
 #include <sys/resource.h>
 
+void mynice() {
+  nice(-20);
+}
 
 void alter_scheduling(pid_t pid) {
 
@@ -48,8 +52,13 @@ void print_info(pid_t pid) {
 
 int main() {
 
-	pid_t pid = 1624; //use ps -A command to get pid
+	pid_t pid = 5041;
+
 	alter_scheduling(pid);
+
+  mynice();
+
 	print_info(pid);
+
 	return 0;
 }

@@ -1,0 +1,33 @@
+To test:
+1. Run make clean.
+2. Run make.
+** Make sure ckpt module is loaded.
+3. Run ./ck.x
+4. Run ./res.x
+
+Expected results:
+1. Here, we checkpoint the process making the ioctl call to
+checkpoint.
+$>./ck.x
+$> Before ckpt.
+$> Process killed.
+
+2. Here, we restart the process started by checkpoint.
+$>./res.x
+$> Restarting...
+$> After checkpoint.
+
+Current actual results:
+1. 
+$>./ck.x
+$> Before ckpt.
+$> Process killed.
+
+2. 
+$>./res.x
+$> Restarting...
+$> Segmentation fault.
+
+==
+
+Check kernel log (dmesg) for details.

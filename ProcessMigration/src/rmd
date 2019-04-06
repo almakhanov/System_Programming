@@ -1,0 +1,4 @@
+#! /bin/bash
+echo "remove ckpt"
+rm -f /dev/ckpt
+/sbin/rmmod ckpt
